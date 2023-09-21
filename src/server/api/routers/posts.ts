@@ -11,6 +11,10 @@ export const postsRouter = createTRPCRouter({
       };
     }),
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.db.post.findMany();
+    return ctx.db.post.findMany({
+      include: {
+        categories: true,
+      },
+    });
   }),
 });
